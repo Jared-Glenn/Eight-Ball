@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 
 const Eightball = (props) => {
-    const [response, ]
+    const resNum = props.responses.length;
+    const randIndex = () => {
+        return Math.floor(Math.random() * resNum) + 1;
+    }
     
-    const response = { msg: "Think of a Question", color: "black" };
-
-
+    const initialRes = { msg: "Think of a Question", color: "black" };
+    const [response, setResponse] = useState(initialRes);
     
     return (
         <>
-
+        <div className={`eightball`} style={{backgroundColor: response.color, borderRadius: "100%"}}>
+            <h3 className="eightball-message">{response.msg}</h3>
+        </div>
+        <button onClick={() => setResponse(props.responses[randIndex()])}>Get an Answer!</button>
         </>
     )
 };
